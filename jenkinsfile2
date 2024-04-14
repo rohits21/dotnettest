@@ -23,6 +23,8 @@ pipeline {
             steps {
                 sh 'dotnet test src/WebApplication1.sln --logger "trx;LogFileName=./WebApplication1.trx"'
             }
-        }
+        }  
+    }
+}
 
        

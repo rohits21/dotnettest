@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = 'rohitsahu24/dotnetdevops'
+        IMAGE_TAG = 'latest'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'dotnet build src/WebApplication1/WebApplication1.csproj --configuration Release'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'dotnet test src/WebApplication1.sln --logger "trx;LogFileName=./WebApplication1.trx"'
+            }
+        }
+
+       
